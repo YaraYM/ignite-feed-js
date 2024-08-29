@@ -1,8 +1,14 @@
 import styles from './Avatar.module.css';
 
+// desestruturação
+// const user = { name: "Diego" }
+// const { name } = user;
 
-export function Avatar(props) {
+export function Avatar({ hasBorder = true, src }) {
   return (
-    <img className={styles.Avatar} src={props.src} />
+    <img 
+      className={hasBorder ? styles.avatarWithBorder : styles.avatar} 
+      src={src} 
+    />
   );
 }
