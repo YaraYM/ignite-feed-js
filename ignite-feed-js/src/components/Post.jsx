@@ -5,8 +5,16 @@ import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 
 import styles from './Post.module.css';
+import { useState } from 'react';
+
+// estado = variáveis que eu quero que o componente monitore, ou seja, sempre que eu for criar uma variável, como é o caso dos comentários, que eu quero que, quando o valor dessa variável mude, o React mostre as novas informações de acordo com aquela mudança de valor, eu crio um estado
 
 export function Post({ author, publishedAt, content }) {
+  const [comments, setComments] = useState([
+    1, 
+    2,
+  ])
+
   const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'Ã s' HH:mm'h'", {
     locale: ptBR
   });
@@ -15,6 +23,12 @@ export function Post({ author, publishedAt, content }) {
     locale: ptBR,
     addSuffix: true
   });
+
+  function handleCreateNewComment(event) {
+    event.preventDefault();
+
+    setComments([...comments, comments.length + 1]);
+  }
 
   return (
     <article className={styles.post}>
@@ -42,7 +56,7 @@ export function Post({ author, publishedAt, content }) {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
         <textarea 
@@ -55,7 +69,9 @@ export function Post({ author, publishedAt, content }) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
+        {comments.map(comment => {
+          return <Comment />
+        })}
       </div>
     </article>
   )
