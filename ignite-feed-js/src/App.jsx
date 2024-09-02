@@ -6,10 +6,6 @@ import styles from './App.module.css';
 
 import './global.css'
 
-// author: { avatar_url: "", name: "", role: "" }
-// publishedAt: Date
-// content: String
-
 const posts = [ 
   {
     id: 1,
@@ -20,7 +16,7 @@ const posts = [
     },
     content: [
       { type: 'paragraph', content: 'Fala galeraa!', },
-      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare!' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. Ã‰ um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto Ã© DoctorCare!' },
       { type: 'link', content: 'jane.design/doctorcare</a>' },
     ],
     publishedAt: new Date('2024-08-28 08:13:30'),
@@ -29,20 +25,20 @@ const posts = [
     id: 2,
     author: {
       avatarUrl: 'https://github.com/maykbrito.png',
-      name: 'Diego Fernandes',
+      name: 'Mayk Brito',
       role: 'Educador @Rocketseat'
     },
     content: [
       { type: 'paragraph', content: 'Fala galeraa!', },
-      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare!' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. Ã‰ um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto Ã© DoctorCare!' },
       { type: 'link', content: 'jane.design/doctorcare</a>' },
     ],
     publishedAt: new Date('2022-08-30 20:00:48'),
   },
 ];
 
-// iteração = repetição
-// iterar um array = percorrer o array e, pra cada posição do array, fazer alguma coisa
+// iteraÃ§Ã£o = repetiÃ§Ã£o
+// iterar um array = percorrer o array e, pra cada posiÃ§Ã£o do array, fazer alguma coisa
 
 export function App() {
   return (
