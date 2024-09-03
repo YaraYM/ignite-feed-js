@@ -7,7 +7,9 @@ import { Comment } from './Comment';
 import styles from './Post.module.css';
 import { useState } from 'react';
 
-// estado = variáveis que eu quero que o componente monitore, ou seja, sempre que eu for criar uma variável, como é o caso dos comentários, que eu quero que, quando o valor dessa variável mude, o React mostre as novas informações de acordo com aquela mudança de valor, eu crio um estado
+// estado = variáveis que eu quero que o componente monitore, ou seja, sempre que eu for criar uma variável, 
+// como é o caso dos comentários, que eu quero que, quando o valor dessa variável mude, o React mostre as 
+// novas informações de acordo com aquela mudança de valor, eu crio um estado
 
 export function Post({ author, publishedAt, content }) {
   const [comments, setComments] = useState([
@@ -37,6 +39,16 @@ export function Post({ author, publishedAt, content }) {
     setNewCommentText(event.target.value);
   }
 
+  function deleteComment(commentToDelete) {
+    // imutabilidade -> as variáveis não sofrem mutação (nunca alteramos o valor de uma variável,  
+    // e sim criamos um novo valor, um novo espaço na memória)
+    const commentsWithoutDeletedOne = comments.filter(comment => {
+      return comment !== commentToDelete;
+    })
+
+    setComments(commentsWithoutDeletedOne);
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -56,9 +68,9 @@ export function Post({ author, publishedAt, content }) {
       <div className={styles.content}>
         {content.map(line => {
           if(line.type === 'paragraph') {
-            return <p>{line.content}</p>
+            return <p key={line.content}>{line.content}</p>
           } else if(line.type === 'link') {
-            return <p><a href="#">{line.content}</a></p>
+            return <p key={line.content}><a href="#">{line.content}</a></p>
           }
         })}
       </div>
@@ -80,7 +92,13 @@ export function Post({ author, publishedAt, content }) {
 
       <div className={styles.commentList}>
         {comments.map(comment => {
-          return <Comment content={comment} />
+          return (
+            <Comment 
+              key={comment} 
+              content={comment} 
+              onDeleteComment={deleteComment} 
+            />
+          )
         })}
       </div>
     </article>
